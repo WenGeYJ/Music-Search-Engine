@@ -1,0 +1,173 @@
+$def with(keyword, results, length)
+<head>
+    <meta charset="utf-8">
+    <title>Result of $keyword</title>
+    <style>
+        body{
+            background:url("../static/bg00.jpg");
+        }
+		div.topblack1{background-color: #333;
+			width: 100%; height: 3px
+		}
+		div.topnormal{background-color: #333;
+            width: 60px;height: 35px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+        }
+		div.topfloatleft{background-color: #333;
+			width: 30px;height: 35px;
+			float: left;
+        }
+        div.topchange{background-color:white;
+            width: 60px;height: 35px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+        }
+        div.topbg{background-color: #333;
+            width: 100%;height: 35px;
+            left: 50px; right: 0px;
+        }
+        a.top{
+            text-decoration: none;
+            color: black;
+        }
+
+
+
+        div.blank{
+			min-height: 30px;
+			float: bottom;
+		}
+        div.logotop{
+            min-height: 0px;
+            position: relative;
+            z-index: 0;
+            float: left;
+			vertical-align: middle;
+        }
+        div.searchtop{
+            min-height: 0px;
+            position: relative;
+            z-index: 0;
+			vertical-align: middle;
+        }
+        input.inputtext{
+            width: 300px;
+            height: 35px;
+            vertical-align: middle;
+			float: left;
+        }
+        input.inputimg{
+            height: 35px;
+            vertical-align: middle;
+        }
+        div.searchresulttop{
+            min-height: 10px;
+        }
+        div.simular{
+            min-height:  10px;
+        }
+
+
+		div.result{background:url("../static/bg50.png");
+			margin-left: 100px;
+			width: 80%;
+			height: 200px;
+			position: relative;
+		}
+		div.resultpic{
+			margin: 20px;
+			position: relative;
+			width: 100px;
+			height: 100px;
+			border: 10px;
+			bordercolor: white;
+			float: left;
+		}
+		div.resultinfo{
+			margin-left: 240px;
+			margin-top: 0px;
+			position: relative;
+		}
+		div.reviews{
+			margin-left: 60px;
+			margin-top: 24px;
+            height: 40px;
+            line-height:25px;
+            overflow: hidden;
+		}
+        div.reviews:after{
+            content:'...';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 2em;
+            text-align: right;
+        }
+</style>
+</head>
+<body>
+<!--顶部栏-->
+<div class = topblack1></div>
+<div class = topfloatleft></div>
+<div class = topnormal onmouseover="this.className='topchange'" onmouseout="this.className='topnormal'">
+    <a class = top href="/"><font color="#A8A8A8">
+        <b>网页</b></font>
+    </a>
+</div>
+<div class = topchange>
+    <a href="/im"><font color="#A8A8A8">
+        <b>图片</b></font>
+    </a>
+</div>
+<div class = topbg></div>
+<div class = topblack1></div>
+<!--logo及搜索栏-->
+<div class = blank></div>
+<div class = logotop>
+    <img src="../static/3.png" style="height:30px;">
+</div>
+<div class = searchtop>
+    <form name="rekey" action="/t" method="get">
+        <input type="text" class="inputtext" name="keyword">
+        <input type="image" class="inputimg" src="../static/search.png">
+    </form>
+</div>
+<div class = blank></div>
+<!---->
+$if len(results[0]) > 0:
+    <div class="simular">
+        <a>你可能要找：</a>
+        $if len(results[0]) <= 3:
+            $for i in range(len(results[0])):
+                <a>  $results[0][i]  </a>
+        $else:
+            $for i in range(3):
+                <a>  $results[0][i]  </a>
+    </div>
+<!--结果显示-->
+$if keyword:
+    <div class = searchresulttop><font color="white">
+        <a>对 <b>图片</b> 的搜索结果为:</a></font>
+    </div>
+    $for i in range(1,length):
+        <div class=blank></div>
+        <div class = result>
+            <div class = resultpic>
+                <a href="$results[i][5]"><img src=$results[i][5] width=140px></a>
+            </div>
+            <div class = resultinfo>
+                <br>
+                <p><a href="$results[i][3]" style="text-decoration:none;color:#000000;font-size: 1.3em"><b>$results[i][0]</b></a>
+                <a style="color:#545454">    $results[i][1]</a></p>
+                <p>$results[i][2]</p>
+                <p><a href="$results[i][3]" style="text-decoration:none;color:#545454">$results[i][3]</a></p>
+            </div>
+            <div class = reviews>
+                <p>评论: $results[i][4]</p>
+            </div>
+        </div>
+        <div class = blank></div>
+</body>

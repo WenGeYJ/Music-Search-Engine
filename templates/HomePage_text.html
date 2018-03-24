@@ -1,0 +1,86 @@
+$def with()
+<head>
+<meta charset="utf-8">
+<title>文字搜索</title>
+<style>
+        body{
+            background-image: url("../static/bg00.jpg");
+            background-size:cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin:0;padding:0;
+        }
+        div.normal{background-color: #3C3C3C;
+            width: 60px;height: 40px;
+            text-align: center;
+            line-height: 40px;
+            float: left;}
+		div.floatleft{background-color: #3C3C3C;
+			width: 30px;height: 40px;
+			float: left;
+			}
+        div.change{background-color:white;
+            width: 60px;height: 40px;
+            text-align: center;
+            line-height: 40px;
+            float: left; }
+        div.bg{background-color: #3C3C3C;
+            width: 100%;height: 40px;
+            left: 50px; right: 0px;}
+        a.top{
+            text-decoration: none;
+            color: black;
+        }
+		div.blank{
+			min-height: 80px;
+			position: relative;
+			z-index: 0;
+			text-align: center;
+		}
+		div.logo{
+			min-height: 80px;
+			position: relative;
+			z-index: 0;
+			text-align: center;
+		}
+		form.searchtext{
+			min-height: 0px;
+			position: relative;
+			z-index: 0;
+			text-align: center;
+		}
+
+		input{
+			font-family: Arial;
+			font-size: 24px;
+		}
+
+</style>
+</head>
+
+<body>
+<!--顶部栏-->
+<div class = floatleft></div>
+<div class = change>
+    <a><font color="#A8A8A8">
+        <b>网页</b>
+        </font>
+    </a>
+</div>
+<div class = normal onmouseover="this.className='change'" onmouseout="this.className='normal'">
+    <a class = top href="/im">
+        <font color="#A8A8A8">
+        <b>图片</b><font color="#A8A8A8">
+    </a>
+</div>
+<div class = bg></div>
+<!--图标及搜索栏-->
+<div class = blank></div>
+<div class = logo>
+<img src = "../static/3.png">
+</div>
+<form class=searchtext name="" action="t" method = "get">
+<input type="text" style="width:300px;height:36px;vertical-align:middle" name="keyword">
+<input type="image" style="width:80px;vertical-align:middle" src="../static/search.png">
+</form>
+
